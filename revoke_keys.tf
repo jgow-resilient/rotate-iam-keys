@@ -4,24 +4,24 @@ By @dvdtoth
 */
 
 variable "groups" {
-  type        = "string"
+  type        = string
   default     = "Developers, Administrators"
   description = "Comma separated list of IAM groups"
 }
 
 variable "schedule" {
-  type        = "string"
+  type        = string
   default     = "cron(55 23 ? * 6 *)"
   description = "Schedule to trigger lambda, default 23:55 Friday. See doc: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
 }
 
 variable "aws_profile" {
-  type        = "string"
+  type        = string
   description = "AWS profile"
 }
 
 variable "aws_region" {
-  type        = "string"
+  type        = string
   default     = "eu-west-2"
   description = "AWS region"
 }
@@ -78,7 +78,7 @@ resource "aws_lambda_function" "revoke_keys" {
   role             = "${aws_iam_role.revoke_keys_role.arn}"
   handler          = "handler.revoke"
   source_code_hash = "${base64sha256(filebase64sha256("revoke_keys.zip"))}"
-  runtime          = "nodejs8.10"
+  runtime          = "nodejs12.x"
 
   environment {
     variables = {
