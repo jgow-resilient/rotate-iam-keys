@@ -38,7 +38,7 @@ function deleteByUser(username) {
     .then(data => {
       return Promise.all(data.AccessKeyMetadata.map(metadata => {
         console.log('Deleting access key ' + metadata.AccessKeyId + ' for user ' + username);
-        return deleteAccessKey(metadata.AccessKeyId, username);
+        return updateAccessKey(metadata.AccessKeyId, username);
       }))
     })
 }
