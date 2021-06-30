@@ -1,7 +1,7 @@
-groups = "Developers, Administrators"
+groups = "TestGroup1"
 
-schedule = "cron(55 23 ? * 6 *)"
+schedule = "cron(5 * * * * *)"
 
-aws_profile = "yourprofile"
+aws_profile = "default"
 
 aws_region = "eu-west-2"
