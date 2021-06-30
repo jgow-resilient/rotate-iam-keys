@@ -6,15 +6,16 @@
 const aws = require('aws-sdk');
 const iam = new aws.IAM();
 
-// Delete an access key by id
-function deleteAccessKey(id, username) {
+// Update an access key by id
+function updateAccessKey(id, username) {
 
   let params = {
     AccessKeyId: id,
+    Status: "Inactive",
     UserName: username
   };
 
-  return iam.deleteAccessKey(params).promise()
+  return iam.updateAccessKey(params).promise()
     .catch(err => {
       // Key might have been deleted already if user is in multiple groups
       if (err.code == "NoSuchEntity") {
