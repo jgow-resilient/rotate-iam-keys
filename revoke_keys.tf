@@ -62,6 +62,7 @@ resource "aws_iam_role_policy" "revoke_keys_role_policy" {
       "Action": [
         "iam:GetGroup",
         "iam:ListAccessKeys",
+        "iam:UpdateAccessKey",
         "iam:DeleteAccessKey"
       ],
       "Effect": "Allow",
