@@ -24,6 +24,13 @@ terraform init
 terraform apply -var-file="production.tfvars"
 ```
 
+Update variables in production.tfvars (Powershell)
+
+```
+Compress-Archive .\handler.js revoke_keys.zip
+terraform init
+terraform apply -var-file="production.tfvars"
+```
 
 To remove:
 ```
