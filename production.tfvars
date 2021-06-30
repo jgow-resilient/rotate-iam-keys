@@ -1,6 +1,6 @@
 groups = "TestGroup1"
 
-schedule = "cron(5 * * * ? *)"
+schedule = "cron(*/5 * * * ? *)"
 
 aws_profile = "default"
 
