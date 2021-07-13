@@ -27,8 +27,8 @@ function updateAccessKey(id, username) {
     })
 }
 
-// Delete access keys of username
-function deleteByUser(username) {
+// Update access keys of username
+function updateByUser(username) {
 
   let params = {
     UserName: username
@@ -43,8 +43,8 @@ function deleteByUser(username) {
     })
 }
 
-// Delete all keys for users in group
-function deleteKeysInGroup(group) {
+// Update all keys for users in group
+function updateKeysInGroup(group) {
 
   let params = {
     GroupName: group,
@@ -54,7 +54,7 @@ function deleteKeysInGroup(group) {
     .then(group_data => {
       let group_users = group_data.Users;
       return Promise.all(group_data.Users.map(user => {
-        return deleteByUser(user.UserName);
+        return updateByUser(user.UserName);
       }))
     })
 }
@@ -65,18 +65,18 @@ module.exports.revoke = (event, context, callback) => {
   // clear whitespaces, split by comma
   let groups = process.env.GROUPS.replace(/\s/g, '').split(',');
 
-  // Delete access keys asynchronously from groups
-  Promise.all(groups.map(deleteKeysInGroup))
+  // Update access keys asynchronously from groups
+  Promise.all(groups.map(updateKeysInGroup))
     .then(data => {
       callback(null, {
-        message: 'Keys successfully deleted',
+        message: 'Keys successfully deactivated',
         event
       });
     })
 
     .catch(err => {
       callback(err, {
-        message: 'Failed to delete keys',
+        message: 'Failed to deactivate keys',
         event
       });
     })
