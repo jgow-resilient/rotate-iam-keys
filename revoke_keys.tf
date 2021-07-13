@@ -88,15 +88,15 @@ resource "aws_lambda_function" "revoke_keys" {
   }
 }
 
-resource "aws_cloudwatch_event_rule" "weekly" {
-  name                = "weekly"
-  description         = "Fires every Friday at 23:55"
+resource "aws_cloudwatch_event_rule" "AWSKeyDeactivation" {
+  name                = "AWSKeyDeactivation"
+  description         = "Fires on the 30th of March, July & November at 09:00"
   schedule_expression = "${var.schedule}"
   is_enabled          = "true"
 }
 
-resource "aws_cloudwatch_event_target" "revoke_keys_weekly" {
-  rule      = "${aws_cloudwatch_event_rule.weekly.name}"
+resource "aws_cloudwatch_event_target" "revoke_keys_4months" {
+  rule      = "${aws_cloudwatch_event_rule.AWSKeyDeactivation.name}"
   target_id = "revoke_keys"
   arn       = "${aws_lambda_function.revoke_keys.arn}"
 }
@@ -106,5 +106,5 @@ resource "aws_lambda_permission" "allow_cloudwatch_to_call_revoke_keys" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.revoke_keys.function_name}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${aws_cloudwatch_event_rule.weekly.arn}"
+  source_arn    = "${aws_cloudwatch_event_rule.AWSKeyDeactivation.arn}"
 }
