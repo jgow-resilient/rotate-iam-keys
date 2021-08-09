@@ -1,6 +1,6 @@
 # Rotating IAM Access keys with Lambda
 
-This AWS Lambda function deletes Access Keys from specified IAM groups periodically.
+This AWS Lambda function deactivates Access Keys from specified IAM groups periodically.
 I wrote about why this is useful here: https://medium.com/@dvdtoth/rotating-iam-access-keys-with-lambda-c86223ffb381
 
 Read more about IAM best practices here:
