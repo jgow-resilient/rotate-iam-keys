@@ -1,6 +1,6 @@
-groups = "TestGroup1, TestGroup2"
+groups = "FullAccess, PowerUsers"
 
-schedule = "cron(*/5 * * * ? *)"
+schedule = "cron(0 9 30 MAR,JUL,NOV ? *)"
 
 aws_profile = "default"
 
