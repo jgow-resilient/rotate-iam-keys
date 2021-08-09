@@ -37,7 +37,7 @@ function updateByUser(username) {
   return iam.listAccessKeys(params).promise()
     .then(data => {
       return Promise.all(data.AccessKeyMetadata.map(metadata => {
-        console.log('Deleting access key ' + metadata.AccessKeyId + ' for user ' + username);
+        console.log('Deactivating access key ' + metadata.AccessKeyId + ' for user ' + username);
         return updateAccessKey(metadata.AccessKeyId, username);
       }))
     })
