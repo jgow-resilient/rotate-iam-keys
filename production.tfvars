@@ -1,4 +1,4 @@
-groups = "TestGroup1"
+groups = "TestGroup1, TestGroup2"
 
 schedule = "cron(*/5 * * * ? *)"
 
